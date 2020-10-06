@@ -11,11 +11,70 @@ const rl = readline.createInterface({
 });
 
 
-const pigLatin = (word) => {
+// This is the statement
+var currentWord = "this sentence sounds decent in pig latin"
 
-  // Your code here
+// Function Start
+const pigLatin = (word) =>{
 
+const vowel = ["a","e","i","o","u"]
+word = word.toLowerCase();
+word = word.trim()
+let theSplit = word.split("")
+//next two var are for placeholders to swap word positions later on
+let firstHalf = "";
+let secondHalf = "";
+// bT puts them together
+let backTogether = "";
+var placeHolderArray;
+
+//This section is used to split apart and put the string back together into an array
+//This might have been unnecessary
+for(let i = 0; i < theSplit.length;i++){
+   
+        placeHolderArray = word.split(" ")
+     
+    
 }
+//this looks for a vowel at the beginning of a word
+for (let i = 0; i < placeHolderArray.length; i++){
+
+    if (vowel.includes(placeHolderArray[i][0])){
+       placeHolderArray[i] = placeHolderArray[i] + "yay";
+       
+    }
+//if no vowel is at beginning of word, this splits the current word off
+    else {
+        let separateWord = placeHolderArray[i].split('');
+//This is the magic
+        for (let q = 0; q < separateWord.length; q++){
+           if (vowel.includes(separateWord[q])){
+               firstHalf = placeHolderArray[i].substring(0,q)
+                secondHalf = placeHolderArray[i].substring(q, separateWord.length)
+               backTogether = secondHalf + firstHalf + "ay"
+           placeHolderArray[i] = backTogether
+           break
+           }  
+        }
+    }
+}
+
+//This section is used to turn the placeHolder into out current word
+//Turn the array into a string
+//Then get rid of commas to clean up the final word
+
+   var iterationCount = placeHolderArray.length
+    var placeHolderString = placeHolderArray.toString()
+    currentWord = placeHolderString
+    for (let i = 0; i < iterationCount;i++){
+    currentWord = currentWord.replace(","," ")
+}
+return currentWord
+}
+pigLatin(currentWord)
+console.log(currentWord)
+
+
 
 // the first function called in the program to get an input from the user
 // to run the function use the command: node main.js
